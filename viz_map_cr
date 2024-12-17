@@ -1,0 +1,156 @@
+(async function(){
+    var id = 'qzqqtzt94367gcvp7oehz8j9nqics3th'
+    var itemData = await getItemData(id);
+
+
+/**
+ * Функция для загрузки GeoJSON файла с указанного URL.
+ * @param {string} url - URL файла GeoJSON.
+ * @returns {Promise<Object>} Объект данных GeoJSON.
+ */
+async function loadGeoJSON(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Ошибка загрузки GeoJSON: ${response.statusText}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Ошибка при загрузке GeoJSON:", error);
+        throw error;
+    }
+}
+
+/**
+ * Функция для создания карты с динамическим обновлением значений.
+ * @param {string} containerId - ID контейнера для карты.
+ * @param {Object} geoJSONData - Данные GeoJSON.
+ * @returns {Object} Объект с функцией для обновления значений.
+ */
+function createMap(containerId, geoJSONData) {
+    const chart = echarts.init(document.getElementById(containerId));
+
+    // Текущие значения районов
+    const districtValues = {};
+
+    /**
+     * Возвращает основной цвет и цвет при наведении на основе значения.
+     * @param {number} value - Значение для района.
+     * @returns {Object} Объект с основным цветом и цветом при наведении.
+     */
+    const getColorWithHover = (value) => {
+        if (value <= 500) {
+            return { color: '#7acdac', hoverColor: '#a7ddc7' }; // Зеленый и светло-зеленый
+        }
+        if (value <= 1000) {
+            return { color: '#ffff66', hoverColor: '#ffffcc' }; // Желтый и светло-желтый
+        }
+        return { color: '#ff6666', hoverColor: '#ff9999' }; // Красный и светло-красный
+    };
+
+    /**
+     * Обновляет данные карты с текущими значениями.
+     */
+    const updateMap = () => {
+        const mapData = geoJSONData.features.map((feature) => {
+            const name = feature.properties.name;
+            const value = districtValues[name] || 0; // Значение или 0 по умолчанию
+            const { color, hoverColor } = getColorWithHover(value);
+
+            return {
+                name,
+                value,
+                itemStyle: {
+                    areaColor: color, // Основной цвет заливки
+                    borderColor: '#ffffff', // Черная обводка
+                    borderWidth: 1,
+                },
+                emphasis: {
+                    itemStyle: {
+                        areaColor: hoverColor, // Цвет при наведении
+                        borderColor: '#ffffff',
+                        borderWidth: 2,
+                    },
+                },
+            };
+        });
+
+        const option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: (params) => `${params.name}: ${params.value || 0}`,
+            },
+            series: [
+                {
+                    type: 'map',
+                    map: 'customMap',
+                    label: {
+                        show: true,
+                        formatter: (params) => params.value || '', // Отображаем значение
+                        fontSize: 16,
+                        color: '#000000',
+                        },
+                    data: mapData,
+                },
+            ],
+        };
+
+        chart.setOption(option);
+    };
+
+    /**
+     * Обновляет значение для указанного района.
+     * @param {string} districtName - Название района.
+     * @param {number} value - Новое значение для района.
+     */
+    const updateDistrictValue = (districtName, value) => {
+        districtValues[districtName] = value;
+        updateMap();
+    };
+
+    // Регистрация GeoJSON карты и инициализация
+    echarts.registerMap('customMap', geoJSONData);
+    updateMap();
+
+    // Добавление адаптивности
+    window.addEventListener('resize', () => {
+        chart.resize(); // Обновляем размеры карты при изменении окна
+    });
+
+    // Возвращаем функцию для обновления значений районов
+    return { updateDistrictValue };
+}
+
+// URL файла GeoJSON
+const geoJSONUrl = "https://raw.githubusercontent.com/095ism/map/refs/heads/main/chr-map.geojson";
+
+// ID контейнера карты
+const containerId = id;
+
+// Загрузка GeoJSON и создание карты
+loadGeoJSON(geoJSONUrl).then((geoJSONData) => {
+    const mapInstance = createMap(containerId, geoJSONData);
+
+    // Добавляем значения районов через код
+    mapInstance.updateDistrictValue("Ачхой-Мартановский район",291);
+    mapInstance.updateDistrictValue("Веденский район",87);
+    mapInstance.updateDistrictValue("г. Аргун",141);
+    mapInstance.updateDistrictValue("г. Грозный",1562);
+    mapInstance.updateDistrictValue("Грозненский район",441);
+    mapInstance.updateDistrictValue("Гудермесский район",266);
+    mapInstance.updateDistrictValue("Итум-Калинский район",3);
+    mapInstance.updateDistrictValue("Курчалоевский район",322);
+    mapInstance.updateDistrictValue("Надтеречный район",291);
+    mapInstance.updateDistrictValue("Наурский район",239);
+    mapInstance.updateDistrictValue("Ножай-Юртовский район",126);
+    mapInstance.updateDistrictValue("Серноводский район",67);
+    mapInstance.updateDistrictValue("Урус-Мартановский район",595);
+    mapInstance.updateDistrictValue("Шалинский район",444);
+    mapInstance.updateDistrictValue("Шаройский район",6);
+    mapInstance.updateDistrictValue("Шатойский район",43);
+    mapInstance.updateDistrictValue("Шелковской район",247);
+
+});
+
+    
+})()
