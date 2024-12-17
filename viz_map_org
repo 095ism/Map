@@ -1,0 +1,691 @@
+(async function(){
+    var id = '9qrx2o8rpen1oacau8okdxj8uh6qclf6'
+    var itemData = await getItemData(id);
+    
+    console.clear();
+    console.log(itemData);
+    
+    const getLpuData = (code) => itemData.values.find(row => row.CODE_LPU.value === code) || {};
+    
+// Данные организаций
+const data = [
+    {
+        name: "НАУР",
+        fullname: 'ГБУ "НАУРСКАЯ ЦРБ"',
+        percent: (() => {const value = getLpuData('200007')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200007')?.PLAN?.value || "",
+        fact: getLpuData('200007')?.FACT?.value || "",
+        row: 1,
+        col: 1
+    },
+    {
+        name: "ДП 5",
+        fullname: 'ГБУ "ДП №5"',
+        percent: (() => {const value = getLpuData('200038')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200038')?.PLAN?.value || "",
+        fact: getLpuData('200038')?.FACT?.value || "",
+        row: 1,
+        col: 3,
+    },
+    {
+        name: "СЦ",
+        fullname: 'ГБУ "СЦ"',
+        percent: (() => {const value = getLpuData('200024')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200024')?.PLAN?.value || "",
+        fact: getLpuData('200024')?.FACT?.value || "",
+        row: 1,
+        col: 5,
+    },
+    {
+        name: "НАДТ",
+        fullname: 'ГБУ "НАДТЕРЕЧНАЯ ЦРБ"',
+        percent: (() => {const value = getLpuData('200022')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200022')?.PLAN?.value || "",
+        fact: getLpuData('200022')?.FACT?.value || "",
+        row: 2,
+        col: 1,
+    },
+    {
+        name: "КБ 3",
+        fullname: 'ГБУ "КБ №3"',
+        percent: (() => {const value = getLpuData('200050')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200050')?.PLAN?.value || "",
+        fact: getLpuData('200050')?.FACT?.value || "",
+        row: 2,
+        col: 2,
+    },
+    {
+        name: "ГБ 6",
+        fullname: 'ГБУ "ГБ №6"',
+        percent: (() => {const value = getLpuData('200003')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200003')?.PLAN?.value || "",
+        fact: getLpuData('200003')?.FACT?.value || "",
+        row: 2,
+        col: 3,
+    },
+    {
+        name: "РДКБ",
+        fullname: 'ГБУ "РДКБ"',
+        percent: (() => {const value = getLpuData('200023')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200023')?.PLAN?.value || "",
+        fact: getLpuData('200023')?.FACT?.value || "",
+        row: 2,
+        col: 4,
+    },
+    {
+        name: "ДСП1",
+        fullname: 'ГБУ "ДСП №1"',
+        percent: (() => {const value = getLpuData('200060')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200060')?.PLAN?.value || "",
+        fact: getLpuData('200060')?.FACT?.value || "",
+        row: 2,
+        col: 5,
+    },
+    {
+        name: "РПНД",
+        fullname: 'ГБУ "РПНД"',
+        percent: (() => {const value = getLpuData('RPND')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('RPND')?.PLAN?.value || "",
+        fact: getLpuData('RPND')?.FACT?.value || "",
+        row: 2,
+        col: 6,
+    },
+    {
+        name: "ШЕЛК",
+        fullname: 'ГБУ "ШЕЛКОВСКАЯ ЦРБ"',
+        percent: (() => {const value = getLpuData('200012')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200012')?.PLAN?.value || "",
+        fact: getLpuData('200012')?.FACT?.value || "",
+        row: 2,
+        col: 11,
+    },
+    {
+        name: "ГП 6",
+        fullname: 'ГБУ "ГП №6"',
+        percent: (() => {const value = getLpuData('200006')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200006')?.PLAN?.value || "",
+        fact: getLpuData('200006')?.FACT?.value || "",
+        row: 3,
+        col: 4,
+    },
+    {
+        name: "ЦЛРД",
+        fullname: 'ГБУ "ЦЛРД"',
+        percent: (() => {const value = getLpuData('200214')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200214')?.PLAN?.value || "",
+        fact: getLpuData('200214')?.FACT?.value || "",
+        row: 3,
+        col: 5,
+    },
+    {
+        name: "ГП 4",
+        fullname: 'ГБУ "ГП №4"',
+        percent: (() => {const value = getLpuData('200040')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200040')?.PLAN?.value || "",
+        fact: getLpuData('200040')?.FACT?.value || "",
+        row: 3,
+        col: 6,
+    },
+    {
+        name: "ДП 1",
+        fullname: 'ГБУ "ДП №1"',
+        percent: (() => {const value = getLpuData('200015')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200015')?.PLAN?.value || "",
+        fact: getLpuData('200015')?.FACT?.value || "",
+        row: 3,
+        col: 7,
+    },
+    {
+       name: "ГП 3",
+        fullname: 'ГБУ "ГП №3"',
+        percent: (() => {const value = getLpuData('200048')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200048')?.PLAN?.value || "",
+        fact: getLpuData('200048')?.FACT?.value || "",
+        row: 3,
+        col: 8,
+    },
+    {
+        name: "РДСП",
+        fullname: 'ГБУ "РДСП"',
+        percent: (() => {const value = getLpuData('200035')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200035')?.PLAN?.value || "",
+        fact: getLpuData('200035')?.FACT?.value || "",
+        row: 3,
+        col: 9,
+    },
+    {
+        name: "ГП 7",
+        fullname: 'ГБУ "ГП №7"',
+        percent: (() => {const value = getLpuData('200056')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200056')?.PLAN?.value || "",
+        fact: getLpuData('200056')?.FACT?.value || "",
+        row: 3,
+        col: 10,
+    },
+    {
+        name: "РКВД",
+        fullname: 'ГБУ "РКВД"',
+        percent: (() => {const value = getLpuData('200142')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200142')?.PLAN?.value || "",
+        fact: getLpuData('200142')?.FACT?.value || "",
+        row: 4,
+        col: 4,
+    },
+    {
+        name: "РДРЦ",
+        fullname: 'ГБУ "РДРЦ"',
+        percent: (() => {const value = getLpuData('200068')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200068')?.PLAN?.value || "",
+        fact: getLpuData('200068')?.FACT?.value || "",
+        row: 4,
+        col: 5,
+    },
+    {
+        name: "СП 1",
+        fullname: 'ГБУ "СП №1"',
+        percent: (() => {const value = getLpuData('200057')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200057')?.PLAN?.value || "",
+        fact: getLpuData('200057')?.FACT?.value || "",
+        row: 4,
+        col: 6,
+    },
+    {
+        name: "РСП",
+        fullname: 'ГБУ "РСП"',
+        percent: (() => {const value = getLpuData('200026')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200026')?.PLAN?.value || "",
+        fact: getLpuData('200026')?.FACT?.value || "",
+        row: 4,
+        col: 7,
+    },
+    {
+        name: "БСМП",
+        fullname: 'ГБУ "РКБСМП"',
+        percent: (() => {const value = getLpuData('200033')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200033')?.PLAN?.value || "",
+        fact: getLpuData('200033')?.FACT?.value || "",
+        row: 4,
+        col: 8,
+    },
+    {
+        name: "РКГВВ",
+        fullname: 'ГБУ "РКГВВ"',
+        percent: (() => {const value = getLpuData('200039')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200039')?.PLAN?.value || "",
+        fact: getLpuData('200039')?.FACT?.value || "",
+        row: 4,
+        col: 9,
+    },
+    {
+        name: "ДП 3",
+        fullname: 'ГБУ "ДП №3"',
+        percent: (() => {const value = getLpuData('200014')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200014')?.PLAN?.value || "",
+        fact: getLpuData('200014')?.FACT?.value || "",
+        row: 4,
+        col: 10,
+    },
+    {
+        name: "ПБ 1",
+        fullname: 'ГБУ "ПБ №1"',
+        percent: (() => {const value = getLpuData('RPB_DARBANHI')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('RPB_DARBANHI')?.PLAN?.value || "",
+        fact: getLpuData('RPB_DARBANHI')?.FACT?.value || "",
+        row: 4,
+        col: 14,
+    },
+    {
+        name: "ПБ 2",
+        fullname: 'ГБУ "ПБ №2"',
+        percent: (() => {const value = getLpuData('PB_№2')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('PB_№2')?.PLAN?.value || "",
+        fact: getLpuData('PB_№2')?.FACT?.value || "",
+        row: 5,
+        col: 3,
+    },
+    {
+        name: "КБ 4",
+        fullname: 'ГБУ "КБ №4"',
+        percent: (() => {const value = getLpuData('200013')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200013')?.PLAN?.value || "",
+        fact: getLpuData('200013')?.FACT?.value || "",
+        row: 5,
+        col: 5,
+    },
+    {
+        name: "ГП 5",
+        fullname: 'ГБУ "ГП №5"',
+        percent: (() => {const value = getLpuData('200053')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200053')?.PLAN?.value || "",
+        fact: getLpuData('200053')?.FACT?.value || "",
+        row: 5,
+        col: 6,
+    },
+    {
+        name: "РКЦЗ",
+        fullname: 'ГБУ "РКЦОЗМИР"',
+        percent: (() => {const value = getLpuData('200009')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200009')?.PLAN?.value || "",
+        fact: getLpuData('200009')?.FACT?.value || "",
+        row: 5,
+        col: 7,
+    },
+    {
+        name: "ГП 1",
+        fullname: 'ГБУ "ГП №1"',
+        percent: (() => {const value = getLpuData('200028')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200028')?.PLAN?.value || "",
+        fact: getLpuData('200028')?.FACT?.value || "",
+        row: 5,
+        col: 8,
+    },
+    {
+        name: "ДКБ 2",
+        fullname: 'ГБУ "ДКБ №2"',
+        percent: (() => {const value = getLpuData('200004')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200004')?.PLAN?.value || "",
+        fact: getLpuData('200004')?.FACT?.value || "",
+        row: 5,
+        col: 9,
+    },
+    {
+       name: "ГП 2",
+        fullname: 'ГБУ "ГП №2"',
+        percent: (() => {const value = getLpuData('200016')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200016')?.PLAN?.value || "",
+        fact: getLpuData('200016')?.FACT?.value || "",
+        row: 5,
+        col: 10,
+    },
+    {
+       name: "РПЦ",
+        fullname: 'ГБУ "РПЦ"',
+        percent: (() => {const value = getLpuData('200091')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200091')?.PLAN?.value || "",
+        fact: getLpuData('200091')?.FACT?.value || "",
+        row: 5,
+        col: 11,
+    },
+    {
+        name: "РОД",
+        fullname: 'ГБУ "РОД"',
+        percent: (() => {const value = getLpuData('200062')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200062')?.PLAN?.value || "",
+        fact: getLpuData('200062')?.FACT?.value || "",
+        row: 5,
+        col: 12,
+    },
+    {
+        name: "АРГ",
+        fullname: 'ГБУ "АГБ №1"',
+        percent: (() => {const value = getLpuData('200019')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200019')?.PLAN?.value || "",
+        fact: getLpuData('200019')?.FACT?.value || "",
+        row: 5,
+        col: 13,
+    },
+    {
+        name: "ГУДЕР",
+        fullname: 'ГБУ "ГУДЕРМЕССКАЯ ЦРБ"',
+        percent: (() => {const value = getLpuData('200042')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200042')?.PLAN?.value || "",
+        fact: getLpuData('200042')?.FACT?.value || "",
+        row: 5,
+        col: 14,
+    },
+    {
+        name: "НОЖ",
+        fullname: 'ГБУ "НОЖАЙ-ЮРТОВСКАЯ ЦРБ"',
+        percent: (() => {const value = getLpuData('200031')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200031')?.PLAN?.value || "",
+        fact: getLpuData('200031')?.FACT?.value || "",
+        row: 5,
+        col: 15,
+    },
+    {
+        name: "СЕРН",
+        fullname: 'ГБУ "СЕРНОВОДСКАЯ ЦРБ"',
+        percent: (() => {const value = getLpuData('200010')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200010')?.PLAN?.value || "",
+        fact: getLpuData('200010')?.FACT?.value || "",
+        row: 6,
+        col: 2,
+    },
+    {
+        name: "АЧХ",
+        fullname: 'ГБУ "АЧХОЙ-МАРТАНОВСКАЯ ЦРБ"',
+        percent: (() => {const value = getLpuData('200001')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200001')?.PLAN?.value || "",
+        fact: getLpuData('200001')?.FACT?.value || "",
+        row: 6,
+        col: 3,
+    },
+    {
+        name: "УРУС",
+        fullname: 'ГБУ "УРУС-МАРТАНОВСКАЯ ЦРБ"',
+        percent: (() => {const value = getLpuData('200025')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200025')?.PLAN?.value || "",
+        fact: getLpuData('200025')?.FACT?.value || "",
+        row: 6,
+        col: 4,
+    },
+    {
+        name: "РНД",
+        fullname: 'ГБУ "РНД"',
+        percent: (() => {const value = getLpuData('RND')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('RND')?.PLAN?.value || "",
+        fact: getLpuData('RND')?.FACT?.value || "",
+        row: 6,
+        col: 6,
+    },
+    {
+       name: "РРЦ",
+        fullname: 'ГБУ "РРЦ"',
+        percent: (() => {const value = getLpuData('200115')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200115')?.PLAN?.value || "",
+        fact: getLpuData('200115')?.FACT?.value || "",
+        row: 6,
+        col: 7,
+    },
+    {
+        name: "РКЦИБ",
+        fullname: 'ГБУ "РКЦИБ ПБ СПИД"',
+        percent: (() => {const value = getLpuData('200036')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200036')?.PLAN?.value || "",
+        fact: getLpuData('200036')?.FACT?.value || "",
+        row: 6,
+        col: 8,
+    },
+    {
+        name: "КБ 5",
+        fullname: 'ГБУ "КБ №5"',
+        percent: (() => {const value = getLpuData('200002')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200002')?.PLAN?.value || "",
+        fact: getLpuData('200002')?.FACT?.value || "",
+        row: 6,
+        col: 9,
+    },
+    {
+        name: "СП 2",
+        fullname: 'ГБУ "СП №2"',
+        percent: (() => {const value = getLpuData('200055')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200055')?.PLAN?.value || "",
+        fact: getLpuData('200055')?.FACT?.value || "",
+        row: 6,
+        col: 10,
+    },
+    {
+        name: "ГРОЗ",
+        fullname: 'ГБУ "ГРОЗНЕНСКАЯ ЦРБ"',
+        percent: (() => {const value = getLpuData('200020')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200020')?.PLAN?.value || "",
+        fact: getLpuData('200020')?.FACT?.value || "",
+        row: 6,
+        col: 11,
+    },
+    {
+        name: "РКБ",
+        fullname: 'ГБУ "РКБ"',
+        percent: (() => {const value = getLpuData('200018')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200018')?.PLAN?.value || "",
+        fact: getLpuData('200018')?.FACT?.value || "",
+        row: 6,
+        col: 12,
+    },
+    {
+        name: "ШАЛИ",
+        fullname: 'ГБУ "ШАЛИНСКАЯ ЦРБ"',
+        percent: (() => {const value = getLpuData('200030')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200030')?.PLAN?.value || "",
+        fact: getLpuData('200030')?.FACT?.value || "",
+        row: 6,
+        col: 13,
+    },
+    {
+        name: "КУРЧ",
+        fullname: 'ГБУ "КУРЧАЛОЕВСКАЯ ЦРБ"',
+        percent: (() => {const value = getLpuData('200032')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200032')?.PLAN?.value || "",
+        fact: getLpuData('200032')?.FACT?.value || "",
+        row: 6,
+        col: 14,
+    },
+    {
+        name: "ДП 4",
+        fullname: 'ГБУ "ДП №4"',
+        percent: (() => {const value = getLpuData('200052')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200052')?.PLAN?.value || "",
+        fact: getLpuData('200052')?.FACT?.value || "",
+        row: 7,
+        col: 6,
+    },
+    {
+        name: "ВФД",
+        fullname: 'ГБУ "ВФД"',
+        percent: (() => {const value = getLpuData('200066')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200066')?.PLAN?.value || "",
+        fact: getLpuData('200066')?.FACT?.value || "",
+        row: 7,
+        col: 8,
+    },
+    {
+        name: "РЭД",
+        fullname: 'ГБУ "РЭД"',
+        percent: (() => {const value = getLpuData('200008')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200008')?.PLAN?.value || "",
+        fact: getLpuData('200008')?.FACT?.value || "",
+        row: 7,
+        col: 11,
+    },
+    {
+        name: "РЦФП",
+        fullname: 'ГБУ "РЦФП"',
+        percent: (() => {const value = getLpuData('200168')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200168')?.PLAN?.value || "",
+        fact: getLpuData('200168')?.FACT?.value || "",
+        row: 7,
+        col: 12,
+    },
+    {
+        name: "ВЕД",
+        fullname: 'ГБУ "ВЕДЕНСКАЯ ЦРБ"',
+        percent: (() => {const value = getLpuData('200044')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200044')?.PLAN?.value || "",
+        fact: getLpuData('200044')?.FACT?.value || "",
+        row: 7,
+        col: 13,
+    },
+    {
+        name: "ШАТ",
+        fullname: 'ГБУ "ШАТОЙСКАЯ МБ"',
+        percent: (() => {const value = getLpuData('200045')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('200045')?.PLAN?.value || "",
+        fact: getLpuData('200045')?.FACT?.value || "",
+        row: 7,
+        col: 14,
+    }    
+];
+
+// Настройки цветов в зависимости от процента выполнения
+const colorRanges = [
+    { min: 0, max: 49, color: "#ff6666", hoverColor: "#ff9999" },
+    { min: 50, max: 74, color: "#ffff66", hoverColor: "#ffffcc" },
+    { min: 75, max: 999, color: "#7acdac", hoverColor: "#a7ddc7" },
+];
+
+// Функция для получения цветов на основе процента
+function getColor(value) {
+    for (const range of colorRanges) {
+        if (range.value !== undefined && value === range.value) {
+            return range;
+        }
+        if (range.min !== undefined && range.max !== undefined && value >= range.min && value <= range.max) {
+            return range;
+        }
+    }
+    return { color: "#cccccc", hoverColor: "#e6e6e6" }; // Цвет по умолчанию
+}
+
+// Создание карты
+function createMap(containerId) {
+    const rowCount = Math.max(...data.map(item => item.row)); // максимальная строка
+    const colCount = Math.max(...data.map(item => item.col)); // максимальный столбец
+
+    const container = document.getElementById(containerId);
+    container.style.position = "relative";
+    container.style.display = "grid";
+    container.style.gap = "0"; // Убираем пробелы между ячейками
+    container.style.width = "100%";
+    container.style.height = "100%";
+    container.style.display = "grid";
+
+    // Функция для обновления сетки и квадратов
+    function updateGrid() {
+        const containerWidth = container.offsetWidth;
+        const containerHeight = container.offsetHeight;
+
+        // Определяем размер квадрата
+        const squareSize = Math.min(
+            containerWidth / colCount,
+            containerHeight / rowCount
+        );
+
+        // Устанавливаем размеры строк и столбцов
+        container.style.gridTemplateRows = `repeat(${rowCount}, ${squareSize}px)`;
+        container.style.gridTemplateColumns = `repeat(${colCount}, ${squareSize}px)`;
+
+        // Обновляем размеры квадратов и текста
+        container.querySelectorAll(".square").forEach((square) => {
+            square.style.width = `${squareSize}px`;
+            square.style.height = `${squareSize}px`;
+            square.style.fontSize = `${squareSize / 4}px`; // Пропорциональный текст
+        });
+    }
+    
+    
+
+    // Добавляем квадраты
+    data.forEach((item) => {
+        const square = document.createElement("div");
+        const { color, hoverColor } = getColor(item.percent);
+
+        square.className = "square";
+        square.style.backgroundColor = color;
+        square.style.display = "flex";
+        square.style.flexDirection = "column";
+        square.style.justifyContent = "center";
+        square.style.alignItems = "center";
+        square.style.boxSizing = "border-box";
+        square.style.gridRow = item.row;
+        square.style.gridColumn = item.col;
+        // Эмуляция нажатия мыши
+        square.addEventListener("mousedown", () => {
+          square.style.transform = "scale(0.95)";
+        });
+        square.addEventListener("mouseup", () => {
+          square.style.transform = "scale(1)";
+        });
+        square.addEventListener("mouseout", () => {
+           square.style.transform = "scale(1)"; // На случай, если мышь покинет квадрат во время нажатия
+        });
+        
+        
+        function openPopup(item) {
+    // Проверяем, существует ли уже окно
+    if (document.querySelector(".popup")) {
+        return; // Если окно уже есть, не создаем новое
+    }
+
+    // Создаем контейнер для уведомления
+    const popup = document.createElement("div");
+    popup.className = "popup"; // Класс для идентификации окна
+    popup.style.position = "absolute";
+    popup.style.top = "50%";
+    popup.style.left = "50%";
+    popup.style.transform = "translate(-50%, -50%)";
+    popup.style.width = "30%";
+    popup.style.height = "22%";
+    popup.style.backgroundColor = "white";
+    popup.style.border = "1px solid black";
+    popup.style.borderRadius = "10px";
+    popup.style.padding = "20px";
+    popup.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)";
+    popup.style.zIndex = "1000";
+    popup.style.overflow = "auto";
+
+    popup.innerHTML = `
+    <h2 style="margin-bottom: 30px">${item.fullname || "Неизвестная организация"}</h2>
+    <p>Выполнение: ${item.percent !== undefined ? item.percent + "%" : ""}<p>
+    <p>Количество выданных свидетельств: ${item.plan || ""}</p>
+    <p>Количество зарегистрированных в РЭМД ЕГИСЗ: ${item.fact || ""}</p>
+`;
+
+    // Кнопка для закрытия окна
+    const closeButton = document.createElement("button");
+    closeButton.textContent = "X";
+    closeButton.style.position = "absolute";
+    closeButton.style.top = "10px";
+    closeButton.style.right = "10px";
+    closeButton.style.border = "none";
+    closeButton.style.background = "red";
+    closeButton.style.color = "white";
+    closeButton.style.width = "30px"; // Квадратная кнопка
+    closeButton.style.height = "30px"; // Квадратная кнопка
+    closeButton.style.textAlign = "center";
+    closeButton.style.lineHeight = "30px";
+    closeButton.style.padding = "0";
+    closeButton.style.cursor = "pointer";
+    closeButton.style.fontSize = "16px";
+
+    // Закрытие окна при нажатии на кнопку
+    closeButton.addEventListener("click", () => {
+        popup.remove();
+    });
+
+    // Добавляем кнопку в окно
+    popup.appendChild(closeButton);
+
+    // Добавляем окно на страницу
+    document.body.appendChild(popup);
+}
+        
+        
+        square.addEventListener("click", () => {
+          openPopup(item);
+        });
+        
+        
+        
+        
+
+        // Наполнение данных
+        const name = document.createElement("div");
+        name.textContent = item.name;
+        square.appendChild(name);
+
+        if (item.percent !== undefined) {
+            const percent = document.createElement("div");
+            percent.textContent = `${item.percent}%`;
+            square.appendChild(percent);
+        }
+
+        // События наведения для смены цвета
+        square.addEventListener("mouseover", () => {
+            square.style.backgroundColor = hoverColor;
+        });
+
+        square.addEventListener("mouseout", () => {
+            square.style.backgroundColor = color;
+        });
+
+        container.appendChild(square);
+    });
+     
+    // Обновляем сетку при изменении размера окна
+    window.addEventListener("resize", updateGrid);
+    updateGrid();
+}
+
+// Инициализация
+createMap(id);
+})()
