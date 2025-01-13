@@ -1,4 +1,4 @@
-const data = [
+[
     {
         name: "НАУР",
         fullname: 'ГБУ "НАУРСКАЯ ЦРБ"',
