@@ -353,9 +353,9 @@
     {
         name: "УРУС",
         fullname: 'ГБУ "УРУС-МАРТАНОВСКАЯ ЦРБ"',
-        percent: (() => {const value = getLpuData('200025')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
-        plan: getLpuData('200025')?.PLAN?.value || "",
-        fact: getLpuData('200025')?.FACT?.value || "",
+        percent: (() => {const value = getLpuData('78292433')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('78292433')?.PLAN?.value || "",
+        fact: getLpuData('78292433')?.FACT?.value || "",
         row: 6,
         col: 4,
     },
