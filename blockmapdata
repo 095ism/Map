@@ -56,9 +56,9 @@
     {
         name: "РДКБ",
         fullname: 'ГБУ "РДКБ"',
-        percent: (() => {const value = getLpuData('200023')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
-        plan: getLpuData('200023')?.PLAN?.value || "",
-        fact: getLpuData('200023')?.FACT?.value || "",
+        percent: (() => {const value = getLpuData('78292171')?.PROC?.value; if (value !== undefined) { const roundedValue = Math.floor(value); if (roundedValue === 0) { return undefined; } return roundedValue > 100 ? 100 : roundedValue; } return undefined; })(),
+        plan: getLpuData('78292171')?.PLAN?.value || "",
+        fact: getLpuData('78292171')?.FACT?.value || "",
         row: 2,
         col: 4,
     },
